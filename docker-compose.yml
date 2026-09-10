@@ -1,0 +1,74 @@
+# ==============================================================================
+# GoalForge - Production Multi-Container Orchestration (MySQL + Spring Boot + React)
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  # 1. MySQL 8.0 Database Service
+  db:
+    image: mysql:8.0
+    container_name: goalforge-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-goal_platform}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD:-Vasanth@12345}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root --password=$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - goalforge-network
+
+  # 2. Spring Boot 3 REST API Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: goalforge-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8080
+      DATABASE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-goal_platform}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-root}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-Vasanth@12345}
+      JWT_SECRET: ${JWT_SECRET:-GoalForgeSuperSecureSecretKeyThatIsAtLeast256BitsLongForHMACSHA256Security!}
+      JWT_EXPIRATION_MS: 86400000
+      CORS_ALLOWED_ORIGINS: "http://localhost,http://localhost:80,http://localhost:5173"
+      DEMO_DATA_ENABLED: "false"
+    ports:
+      - "8080:8080"
+    networks:
+      - goalforge-network
+
+  # 3. React.js + Vite Frontend (Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: goalforge-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=/api
+    ports:
+      - "80:80"
+    networks:
+      - goalforge-network
+
+networks:
+  goalforge-network:
+    driver: bridge
+
+volumes:
+  mysqldata:
+    driver: local
