@@ -1,0 +1,12 @@
+# Example configuration for direct Supabase PostgreSQL connection
+# Replace the placeholders with values from your Supabase Dashboard:
+# Settings -> Database -> Connection string -> JDBC / URI
+
+spring.datasource.url=jdbc:postgresql://db.<YOUR-PROJECT-REF>.supabase.co:5432/postgres?sslmode=require
+spring.datasource.username=postgres
+spring.datasource.password=YOUR_SUPABASE_DB_PASSWORD
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
