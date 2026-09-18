@@ -1,0 +1,179 @@
+/* ==========================================================================
+   GoalForge - Phase Timeline Visual Stepper Styles
+   ========================================================================== */
+
+.phase-timeline-container {
+  padding: 1.25rem 0.5rem 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.phase-timeline-track {
+  display: flex;
+  align-items: flex-start;
+  min-width: min-content;
+  position: relative;
+  gap: 0;
+}
+
+.phase-timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  min-width: 140px;
+  max-width: 190px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  transition: transform var(--transition-fast);
+}
+
+.phase-timeline-step:hover {
+  transform: translateY(-2px);
+}
+
+/* Connector Line between Steps */
+.phase-step-connector {
+  position: absolute;
+  top: 20px;
+  left: -50%;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-border);
+  z-index: 1;
+  transition: background-color var(--transition-normal);
+}
+
+.phase-timeline-step:first-child .phase-step-connector {
+  display: none;
+}
+
+.phase-step-connector.completed {
+  background: linear-gradient(90deg, var(--color-success) 0%, var(--color-success) 100%);
+}
+
+.phase-step-connector.current {
+  background: linear-gradient(90deg, var(--color-success) 0%, var(--color-primary) 100%);
+}
+
+/* Step Node Circle */
+.phase-node-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+  z-index: 2;
+  position: relative;
+  background-color: var(--color-surface);
+  border: 3px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-normal);
+  color: var(--color-text-muted);
+}
+
+/* Completed Node State */
+.phase-timeline-step.completed .phase-node-circle {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+/* Current Active Node State */
+.phase-timeline-step.current .phase-node-circle {
+  background-color: var(--color-primary);
+  border-color: #818cf8;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2), 0 0 16px rgba(79, 70, 229, 0.4);
+  animation: pulseNode 2s infinite ease-in-out;
+}
+
+@keyframes pulseNode {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2), 0 0 16px rgba(79, 70, 229, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(79, 70, 229, 0.1), 0 0 22px rgba(79, 70, 229, 0.5);
+  }
+}
+
+/* Upcoming Node State */
+.phase-timeline-step.upcoming .phase-node-circle {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* Step Text & Badges */
+.phase-step-content {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.phase-step-order {
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.phase-timeline-step.current .phase-step-order {
+  color: var(--color-primary);
+}
+
+.phase-timeline-step.completed .phase-step-order {
+  color: var(--color-success);
+}
+
+.phase-step-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.phase-step-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  margin-top: 0.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.phase-step-badge.completed {
+  background-color: var(--color-success-light);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+}
+
+.phase-step-badge.current {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-border);
+}
+
+.phase-step-badge.upcoming {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}

@@ -1,0 +1,225 @@
+/* ==========================================================================
+   GoalForge - Phase Task List Component Styles
+   ========================================================================== */
+
+.phase-task-manager {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--color-border);
+}
+
+.phase-task-toggle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.4rem 0.2rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+  user-select: none;
+}
+
+.phase-task-toggle-header:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+.phase-task-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.phase-task-toggle-icon {
+  font-size: 0.8rem;
+  transition: transform var(--transition-fast);
+  color: var(--color-text-muted);
+}
+
+.phase-task-toggle-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.phase-task-count-pill {
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.phase-task-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0.75rem 0;
+  padding: 0.6rem;
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+}
+
+.phase-task-search-input {
+  flex: 1 1 140px;
+  min-width: 120px;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.phase-task-search-input:focus {
+  border-color: var(--color-primary);
+}
+
+.phase-task-select {
+  padding: 0.35rem 0.6rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  outline: none;
+}
+
+.phase-task-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.phase-task-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  transition: all var(--transition-fast);
+}
+
+.phase-task-row:hover {
+  border-color: var(--color-primary-border);
+  box-shadow: var(--shadow-xs);
+}
+
+.phase-task-row.completed {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border-subtle);
+}
+
+.phase-task-main {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.phase-task-checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 4px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.phase-task-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.phase-task-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.phase-task-row.completed .phase-task-title {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.phase-task-desc {
+  font-size: 0.775rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.phase-task-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.phase-task-due-pill {
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.phase-task-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.phase-task-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-xs);
+  transition: color var(--transition-fast);
+}
+
+.phase-task-icon-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.phase-task-icon-btn.delete:hover {
+  color: var(--color-danger);
+}
+
+.phase-task-add-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.phase-task-add-input {
+  flex: 1 1 180px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.phase-task-add-input:focus {
+  border-color: var(--color-primary);
+}
