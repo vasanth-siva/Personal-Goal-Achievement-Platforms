@@ -1,0 +1,283 @@
+/* AchievementCard.css */
+.achievement-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, rgba(226, 232, 240, 0.8));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  min-height: 230px;
+}
+
+.achievement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* Unlocked Card Aesthetic */
+.achievement-card.achievement-unlocked {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(254, 252, 232, 0.45));
+  border-color: rgba(234, 179, 8, 0.4);
+  box-shadow: 0 6px 20px rgba(234, 179, 8, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.achievement-card.achievement-unlocked:hover {
+  border-color: rgba(234, 179, 8, 0.7);
+  box-shadow: 0 14px 32px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.achievement-glow {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.25) 0%, rgba(250, 204, 21, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Locked Card Aesthetic */
+.achievement-card.achievement-locked {
+  background: linear-gradient(145deg, rgba(248, 250, 252, 0.85), rgba(241, 245, 249, 0.6));
+  border-color: rgba(203, 213, 225, 0.6);
+  opacity: 0.92;
+}
+
+.achievement-card.achievement-locked:hover {
+  opacity: 1;
+  border-color: rgba(148, 163, 184, 0.8);
+}
+
+/* Header */
+.achievement-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.achievement-icon-wrapper {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 1.85rem;
+  background: linear-gradient(135deg, #fef9c3, #fde047);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.achievement-card.achievement-locked .achievement-icon-wrapper {
+  background: #e2e8f0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  filter: grayscale(0.5);
+}
+
+.achievement-card:hover .achievement-icon-wrapper {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.achievement-lock-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: #475569;
+  color: #fff;
+  font-size: 0.75rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.achievement-unlocked-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 0.9rem;
+  animation: pulse-sparkle 2s infinite ease-in-out;
+}
+
+@keyframes pulse-sparkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.25) rotate(10deg);
+    opacity: 1;
+  }
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-pill .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-unlocked {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.status-unlocked .status-dot {
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.status-locked {
+  background: rgba(100, 116, 139, 0.1);
+  color: #64748b;
+  border: 1px solid rgba(203, 213, 225, 0.8);
+}
+
+.status-locked .status-dot {
+  background: #94a3b8;
+}
+
+/* Body */
+.achievement-body {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.achievement-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text, #0f172a);
+  margin: 0 0 0.4rem 0;
+  line-height: 1.35;
+}
+
+.achievement-card.achievement-locked .achievement-title {
+  color: #334155;
+}
+
+.achievement-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #64748b);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Footer & Progress */
+.achievement-footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--color-border-subtle, rgba(226, 232, 240, 0.6));
+  padding-top: 1rem;
+}
+
+.achievement-unlocked-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.unlocked-date-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  color: #059669;
+  font-weight: 600;
+}
+
+.unlocked-date-icon {
+  font-size: 0.95rem;
+}
+
+.btn-replay-celebration {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-replay-celebration:hover {
+  background: #f59e0b;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.achievement-progress-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.achievement-progress-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.775rem;
+}
+
+.requirement-text {
+  color: #475569;
+  font-weight: 600;
+}
+
+.progress-fraction {
+  color: #64748b;
+  font-variant-numeric: tabular-nums;
+}
+
+.achievement-progress-bar-track {
+  width: 100%;
+  height: 7px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.achievement-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.achievement-remaining-hint {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+  font-style: italic;
+}
