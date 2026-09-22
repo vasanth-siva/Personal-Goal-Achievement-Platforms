@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: goalforge-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        value: GoalForgeSuperSecureSecretKeyThatIsAtLeast256BitsLongForHMACSHA256Security!
+      - key: JWT_EXPIRATION_MS
+        value: "86400000"
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: DEMO_DATA_ENABLED
+        value: "false"
